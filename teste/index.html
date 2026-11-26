@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>body{margin:0}</style>
-<title>Advento DINT, DSI e VMV</title>
+<title>TESTE Advento DINT (envio)</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%231e5b4f%22/%3E%3Crect%20x%3D%228%22%20y%3D%228%22%20width%3D%2248%22%20height%3D%2248%22%20rx%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23f6e7c1%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M32%2014l5.5%2011.5%2012.5%201.7-9.2%208.7%202.3%2012.4L32%2042.3%2020.9%2048.3l2.3-12.4L14%2027.2l12.5-1.7z%22%20fill%3D%22%23f6c453%22/%3E%3C/svg%3E">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1034,7 +1034,7 @@ textarea { resize: vertical; min-height: 9rem; line-height: 1.45; }
 
   /* ---------- Envio das respostas para a base de dados (Supabase) ---------- */
   var SB_URL = "https://ujdgtmshagldbppyanvc.supabase.co";   /* ex.: https://abcdefgh.supabase.co */
-  var SB_KEY = "sb_publishable_uJZEOazq2KQiMC0qGPQoqg_M3jSg1wR";    /* chave pública (anon / publishable), nunca a secreta */
+  var SB_KEY = "sb_publishable_uJZEOazq2KQiMC0qGPOoqg_M3jSg1wR";    /* chave pública (anon / publishable), nunca a secreta */
   var SB_CAL = "dint";
   var SB_ON = /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(SB_URL) && SB_KEY.length > 20;
   function newId() {
@@ -1085,7 +1085,7 @@ textarea { resize: vertical; min-height: 9rem; line-height: 1.45; }
     clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 3200);
   }
   function openAt(n) { return new Date(YEAR, 11, n, 0, 0, 0); }
-  function isOpen(n) { return preview || Date.now() >= openAt(n).getTime(); }
+  function isOpen(n) { return true; }
   function todayNum() {
     if (preview) return 0;
     var d = new Date();
@@ -1154,7 +1154,7 @@ textarea { resize: vertical; min-height: 9rem; line-height: 1.45; }
     if (preview) statusEl.textContent = "";
     else if (avail === 0) {
       var days = Math.ceil((openAt(1).getTime() - now.getTime()) / 864e5);
-      statusEl.innerHTML = 'A primeira janela abre a <strong>1 de dezembro</strong>' + (days > 0 ? ' (faltam ' + days + (days === 1 ? " dia" : " dias") + ").": ".") + ' Equipa: <a href="#equipa">pré-visualizar com todas as janelas abertas</a>.';
+      statusEl.innerHTML = 'A primeira janela abre a <strong>1 de dezembro</strong>' + (days > 0 ? ' (faltam ' + days + (days === 1 ? " dia" : " dias") + ").": ".");
     } else if (t) statusEl.innerHTML = 'Hoje é dia <strong>' + t + ' de dezembro</strong>. Abra a janela ' + pad(t) + ".";
     else statusEl.textContent = "";
   }
@@ -1302,7 +1302,7 @@ textarea { resize: vertical; min-height: 9rem; line-height: 1.45; }
   function route() {
     var hs = location.hash || "";
     var m = /^#(equipa-)?(?:dia-(\d{1,2})|(respostas))$/.exec(hs);
-    preview = /^#equipa/.test(hs);
+    preview = false;
     var tab = (m && m[3]) ? "resp" : "cal";
     day = (m && m[2]) ? parseInt(m[2], 10) : 0;
     if (day < 1 || day > 25) day = 0;
